@@ -1,0 +1,1 @@
+type `tsc` and `node task3`
