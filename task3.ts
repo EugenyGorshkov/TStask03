@@ -11,17 +11,17 @@ interface Post {
 
 const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
 
-const getData = async (url: string) => {
+const getData = async <T, R extends string>(url: R): Promise<T[]> => {
     const res = await fetch(url)
 
     if(!res.ok) {
       console.error('Error', res.status)
     }
 
-    return await res.json() as Post[]
+    return await res.json()
 }
 
-getData(COMMENTS_URL)
+getData<Post, string>(COMMENTS_URL)
   .then(data => {
     // Your code here...
     console.log(data.map(el => `ID: ${el.id}, Email: ${el.email}`))
